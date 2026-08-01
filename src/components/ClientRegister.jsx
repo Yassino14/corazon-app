@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { registerClient } from '../apiConfig';
 
 const ClientRegister = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', address: '', password: '' });
@@ -12,18 +13,13 @@ const ClientRegister = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/client-register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
-      const data = await res.json();
-      if (res.ok) {
-        localStorage.setItem('clientToken', data.token);
-        localStorage.setItem('clientUser', JSON.stringify(data.user));
+      const result = await registerClient(formData);
+      if (result.ok) {
+        localStorage.setItem('clientToken', result.data.token);
+        localStorage.setItem('clientUser', JSON.stringify(result.data.user));
         navigate('/account');
       } else {
-        setError(data.error || 'Registration failed');
+        setError(result.error || 'Registration failed');
       }
     } catch (err) {
       setError('Connection error');

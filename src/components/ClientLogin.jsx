@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { loginClient } from '../apiConfig';
 
 const ClientLogin = () => {
   const [email, setEmail] = useState('');
@@ -13,18 +14,13 @@ const ClientLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/client-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        localStorage.setItem('clientToken', data.token);
-        localStorage.setItem('clientUser', JSON.stringify(data.user));
+      const result = await loginClient(email, password);
+      if (result.ok) {
+        localStorage.setItem('clientToken', result.data.token);
+        localStorage.setItem('clientUser', JSON.stringify(result.data.user));
         navigate('/account');
       } else {
-        setError(data.error || 'Login failed');
+        setError(result.error || 'Login failed');
       }
     } catch (err) {
       setError('Connection error');

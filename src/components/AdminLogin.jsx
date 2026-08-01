@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginAdmin } from '../apiConfig';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -10,19 +11,13 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-      
-      const data = await res.json();
-      
-      if (res.ok) {
-        localStorage.setItem('adminToken', data.token);
+      const result = await loginAdmin(username, password);
+
+      if (result.ok) {
+        localStorage.setItem('adminToken', result.data.token);
         navigate('/admin');
       } else {
-        setError(data.error || 'Login failed');
+        setError(result.error || 'Login failed');
       }
     } catch (err) {
       setError('Server connection failed');

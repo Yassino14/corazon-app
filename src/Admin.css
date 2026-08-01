@@ -1,0 +1,110 @@
+/* Admin CSS */
+.admin-app {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.admin-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 3rem;
+}
+
+.login-box h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.error-text {
+  color: #ff4e50;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border-right: 1px solid var(--glass-border);
+}
+
+.sidebar-brand h2 {
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-nav li {
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--color-text-muted);
+}
+
+.sidebar-nav li:hover, .sidebar-nav li.active {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--color-accent);
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem 4rem;
+  overflow-y: auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.data-view {
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.admin-table th {
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+}
+
+.badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.badge.pending {
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--color-accent);
+}

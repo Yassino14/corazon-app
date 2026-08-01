@@ -1,0 +1,59 @@
+/* Footer CSS */
+.footer {
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--glass-border);
+  padding-top: 4rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand .logo-container {
+  margin-bottom: 1rem;
+}
+
+.logo-img-small {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-brand p {
+  max-width: 300px;
+}
+
+.footer h4 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.footer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer ul a {
+  color: var(--color-text-muted);
+}
+
+.footer ul a:hover {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  padding: 2rem 0;
+  border-top: 1px solid var(--glass-border);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
